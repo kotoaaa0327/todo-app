@@ -78,6 +78,7 @@ const TodoApp = () => {
     <div className="relative min-h-screen">
       <div className="mx-auto max-w-3xl p-6 md:px-20">
         <div role="tablist" className="tabs tabs-boxed grid grid-cols-2">
+          {/* やることタブ */}
           <button
             role="tab"
             className={`tab ${activeTab === "todo" ? "tab-active" : ""}`}
@@ -91,6 +92,7 @@ const TodoApp = () => {
             やること
           </button>
 
+          {/* 完了タブ */}
           <button
             role="tab"
             className={`tab ${activeTab === "done" ? "tab-active" : ""}`}

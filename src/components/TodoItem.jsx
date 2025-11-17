@@ -1,8 +1,9 @@
 const TodoItem = (props) => {
-  const {id, title, isDone ,checkTodo, deleteTodo} = props;
+  const { id, title, isDone, checkTodo, deleteTodo } = props;
   return (
     <div className="flex items-center overflow-hidden justify-between py-2">
       <div className="flex items-center">
+        {/* チェックボックス */}
         <input
           type="checkbox"
           className="checkbox checkbox-xs"
@@ -11,14 +12,18 @@ const TodoItem = (props) => {
             borderColor: "#93c5fd",
           }}
           checked={isDone}
-          onChange={() => checkTodo(id,title,isDone)}
+          onChange={() => checkTodo(id, title, isDone)}
         />
 
         <span className={`ml-3 ${isDone && "line-through"}`}>{title}</span>
       </div>
+      {/* 削除ボタン */}
       <button
         type="button"
-        onClick={() => deleteTodo(id)}
+        // onClick={() => deleteTodo(id)}
+        onClick={() =>
+          document.getElementById(`delete_modal_${id}`).showModal()
+        }
         className="hover:opacity-70 transition-opacity"
         aria-label="削除"
       >
@@ -37,6 +42,37 @@ const TodoItem = (props) => {
           />
         </svg>
       </button>
+
+      {/* 削除確認モーダル */}
+      <dialog id={`delete_modal_${id}`} className="modal">
+        <div className="modal-box">
+          <p className="text-center">本当に削除しますか？</p>
+          <div className="modal-action ">
+            <div className="flex justify-center gap-4 w-full">
+              {/*削除*/}
+              <button
+                className="btn"
+                onClick={() => {
+                  deleteTodo(id);
+                  document.getElementById(`delete_modal_${id}`).close();
+                }}
+              >
+                削除
+              </button>
+              {/*閉じる*/}
+              <button
+                type="button"
+                className="btn "
+                onClick={() =>
+                  document.getElementById(`delete_modal_${id}`).close()
+                }
+              >
+                キャンセル
+              </button>
+            </div>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };
