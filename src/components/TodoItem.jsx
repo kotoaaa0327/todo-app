@@ -12,7 +12,7 @@ const TodoItem = (props) => {
             borderColor: "#93c5fd",
           }}
           checked={isDone}
-          onChange={() => checkTodo(id, title, isDone)}
+          onChange={() => checkTodo(id, isDone)}
         />
 
         <span className={`ml-3 ${isDone && "line-through"}`}>{title}</span>

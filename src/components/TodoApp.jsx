@@ -37,7 +37,7 @@ const TodoApp = () => {
     const { error } = await supabase
       .from("todos")
       //新しいデータを追加する(title: ユーザーが入力したタイトル isDone: 最初は未完了で false)
-      .insert([{ title: inputTitle, isDone: false }]);
+      .insert([{ title: inputTitle, isdone: false }]);
 
     if (error) {
       console.error("Error adding todos:", error);
@@ -49,11 +49,11 @@ const TodoApp = () => {
 
   // Todoのチェック変更
   // id: どのTodoか
-  const checkTodo = async (id, title, isDone) => {
+  const checkTodo = async (id, isDone) => {
     const { error } = await supabase
       .from("todos")
       // データを更新 isDone:!isDone = isDoneの反対にする /false → true（未完了 → 完了）/true → false（完了 → 未完了）
-      .update({ isDone: !isDone })
+      .update({ isdone: !isDone })
       // どのデータを更新するかを指定/idカラムが引数のidと等しい行を更新
       .eq("id", id);
 
@@ -111,13 +111,13 @@ const TodoApp = () => {
           {activeTab === "todo" && (
             <div className="bg-base-100 border border-base-300 rounded-box py-3 px-10 text-sm min-h-[80vh] relative">
               {todoTasks.map((task) => {
-                if (!task.isDone) {
+                if (!task.isdone) {
                   return (
                     <TodoItem
                       key={task.id}
                       id={task.id}
                       title={task.title}
-                      isDone={task.isDone}
+                      isDone={task.isdone}
                       checkTodo={checkTodo}
                       deleteTodo={deleteTodo}
                     />
@@ -133,13 +133,13 @@ const TodoApp = () => {
           {activeTab === "done" && (
             <div className="bg-base-100 border border-base-300 rounded-box p-6 text-sm min-h-[80vh]">
               {todoTasks.map((task) => {
-                if (task.isDone) {
+                if (task.isdone) {
                   return (
                     <TodoItem
                       key={task.id}
                       id={task.id}
                       title={task.title}
-                      isDone={task.isDone}
+                      isDone={task.isdone}
                       checkTodo={checkTodo}
                       deleteTodo={deleteTodo}
                     />
