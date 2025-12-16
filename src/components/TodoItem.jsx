@@ -1,5 +1,5 @@
 const TodoItem = (props) => {
-  const { id, title, isDone, checkTodo, deleteTodo } = props;
+  const { id, title, isdone, checkTodo, deleteTodo } = props;
   return (
     <div className="flex items-center overflow-hidden justify-between py-2">
       <div className="flex items-center">
@@ -8,14 +8,14 @@ const TodoItem = (props) => {
           type="checkbox"
           className="checkbox checkbox-xs"
           style={{
-            backgroundColor: isDone ? "#93c5fd" : "transparent",
+            backgroundColor: isdone ? "#93c5fd" : "transparent",
             borderColor: "#93c5fd",
           }}
-          checked={isDone}
-          onChange={() => checkTodo(id, isDone)}
+          checked={isdone}
+          onChange={() => checkTodo(id, isdone)}
         />
 
-        <span className={`ml-3 ${isDone && "line-through"}`}>{title}</span>
+        <span className={`ml-3 ${isdone && "line-through"}`}>{title}</span>
       </div>
       {/* 削除ボタン */}
       <button

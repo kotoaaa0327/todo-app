@@ -49,11 +49,11 @@ const TodoApp = () => {
 
   // Todoのチェック変更
   // id: どのTodoか
-  const checkTodo = async (id, isDone) => {
+  const checkTodo = async (id, isdone) => {
     const { error } = await supabase
       .from("todos")
       // データを更新 isDone:!isDone = isDoneの反対にする /false → true（未完了 → 完了）/true → false（完了 → 未完了）
-      .update({ isdone: !isDone })
+      .update({ isdone: !isdone })
       // どのデータを更新するかを指定/idカラムが引数のidと等しい行を更新
       .eq("id", id);
 
@@ -117,7 +117,7 @@ const TodoApp = () => {
                       key={task.id}
                       id={task.id}
                       title={task.title}
-                      isDone={task.isdone}
+                      isdone={task.isdone}
                       checkTodo={checkTodo}
                       deleteTodo={deleteTodo}
                     />
@@ -139,7 +139,7 @@ const TodoApp = () => {
                       key={task.id}
                       id={task.id}
                       title={task.title}
-                      isDone={task.isdone}
+                      isdone={task.isdone}
                       checkTodo={checkTodo}
                       deleteTodo={deleteTodo}
                     />
